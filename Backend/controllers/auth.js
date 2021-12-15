@@ -15,7 +15,7 @@ const createUser = async (req, res = response ) => {
         if ( user ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Un usuario ya existe con ese correo'
+                errors: [{msg: 'Un usuario ya existe con ese correo'}]
             });
         }
 
@@ -44,7 +44,7 @@ const createUser = async (req, res = response ) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Por favor hable con el administrador'
+            errors: [{msg: 'Por favor hable con el administrador'}]
         });
 
     }
@@ -63,7 +63,7 @@ const loginUser = async(req, res = response) => {
         if ( !user ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'El usuario no existe'
+                errors: [{msg: 'El usuario no existe'}]
             });
         }
 
@@ -73,7 +73,7 @@ const loginUser = async(req, res = response) => {
         if ( !validPassword ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Contraseña incorrecta'
+                errors: [{msg: 'Contraseña incorrecta'}]
             })
         }
 
@@ -92,7 +92,7 @@ const loginUser = async(req, res = response) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Por favor hable con el administrador'
+            errors: [{msg: 'Por favor hable con el administrador'}]
         });
 
     }

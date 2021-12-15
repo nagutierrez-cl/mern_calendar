@@ -31,7 +31,7 @@ const createEvent = async(req, res = response) => {
         console.log(err);
         res.status(500).json({
             ok: false,
-            msg: 'Por favor hable con el administrador'
+            errors: [{msg: 'Por favor hable con el administrador'}]
         });
 
     }
@@ -48,7 +48,7 @@ const updateEvent = async(req, res = response ) => {
         if ( !evento ) {
             return res.status(404).json({
                 ok: false,
-                msg: 'No existe evento con ese id'
+                errors: [{msg: 'Evento no encontrado'}]
             })
         }
 
@@ -56,7 +56,7 @@ const updateEvent = async(req, res = response ) => {
         if ( evento.user.toString() !== uid ) {
             return res.status(401).json({
                 ok: false,
-                msg: 'No tiene privilegio de editar este evento'
+                errors: [{msg: 'No tiene privilegio para editar el evento'}]
             });
         }
 
@@ -77,7 +77,7 @@ const updateEvent = async(req, res = response ) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Por favor hable con el administrador'
+            errors: [{msg: 'Por favor hable con el administrador'}]
         });
     }
 
@@ -93,14 +93,14 @@ const deleteEvent = async (req, res = response) => {
         if ( !evento ) {
             return res.status(404).json({
                 ok: false,
-                msg: 'No existe evento con ese id'
+                errors: [{msg: 'Evento no encontrado'}]
             })
         }
 
         if ( evento.user.toString() !== uid ) {
             return res.status(401).json({
                 ok: false,
-                msg: 'No tiene privilegio de eliminar este evento'
+                errors: [{msg: 'No tiene privilegios para eliminar el evento'}]
             });
         }
 
@@ -112,7 +112,7 @@ const deleteEvent = async (req, res = response) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Por favor hable con el administrador'
+            errors: [{msg: 'Por favor hable con el administrador'}]
         });
     }
 

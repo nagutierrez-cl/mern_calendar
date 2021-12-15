@@ -27,6 +27,7 @@ export const CalendarScreen = () => {
 
     const [lastView, setLastView] = useState( localStorage.getItem('lastView') || 'month' )
 
+
     useEffect(() => {
 
         dispatch( eventStartLoading() );
@@ -92,7 +93,7 @@ export const CalendarScreen = () => {
             <AddNewFab />
 
             {
-                activeEvent && <DeleteEventFab />
+                activeEvent && ( <DeleteEventFab />)
             }
 
             <CalendarModal />

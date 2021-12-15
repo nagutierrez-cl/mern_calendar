@@ -18,7 +18,7 @@ export const startLogin = ( email, password ) => {
                 name: body.name
             }) );
         } else {
-            Swal.fire('Error', body.msg, 'error');
+            Swal.fire('Error', body.errors[0], 'error');
         }
     }
 }
@@ -38,7 +38,7 @@ export const startRegister = ( email, password, name ) => {
                 name: body.name
             }) );
         } else {
-            Swal.fire('Error', body.msg, 'error');
+            Swal.fire('Error', body.errors[0].msg, 'error');
         }
 
     }
@@ -46,6 +46,23 @@ export const startRegister = ( email, password, name ) => {
 
 export const startChecking = () => {
     return async ( dispatch ) => {
+
+        // no hay token
+        if(!localStorage.getItem('token')){
+            dispatch( checkingFinish() );
+            return
+        }
+
+        const expDate = new Date( localStorage.getItem('token-init-date') );
+        expDate.setHours(expDate.getHours()+2); 
+
+        const now = new Date();
+
+        // token expirado
+        if( now > expDate ){
+            dispatch( checkingFinish() );
+            return 
+        }
 
         const resp = await fetchWithToken( 'auth/renew' );
         const body = await resp.json();

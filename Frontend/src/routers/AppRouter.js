@@ -17,7 +17,15 @@ export const AppRouter = () => {
     const { checking, uid } = useSelector(state => state.auth)
 
     useEffect(() => {
+
         dispatch( startChecking() );
+        
+        setInterval(() => {
+            console.log('checking');
+            dispatch( startChecking() );
+            
+        },119 * 60 * 1000)
+
     }, [dispatch])
 
     if ( checking ) {

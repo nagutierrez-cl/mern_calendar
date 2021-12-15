@@ -49,14 +49,13 @@ export const eventStartUpdate = ( event ) => {
         
         try {
 
-            console.log(event);
             const resp = await fetchWithToken(`events/${ event.id }`, event, 'PUT');
             const body = await resp.json();
 
             if (body.ok) {
                 dispatch( eventUpdated(event) );
             } else {
-                Swal.fire('Error', body.msg, 'error');
+                Swal.fire('Error', body.errors[0].msg, 'error');
             }
 
         } catch (error) {
@@ -83,7 +82,7 @@ export const eventStartDelete = () => {
             if (body.ok) {
                 dispatch( eventDeleted() );
             } else {
-                Swal.fire('Error', body.msg, 'error');
+                Swal.fire('Error', body.errors[0].msg, 'error');
             }
 
         } catch (error) {
