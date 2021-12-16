@@ -14,4 +14,4 @@ Cuenta con autenticación basada en jsonwebtoken.
 La base de datos está destinada en un cluster de MongoDB Atlas.  
 La aplicación está hosteada en heroku.  
   
-Dentro de cada carpeta se detalla un poco más las tecnologías utilizadas
+Dentro de cada carpeta se detallan un poco más las tecnologías utilizadas
