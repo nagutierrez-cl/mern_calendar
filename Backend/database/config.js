@@ -1,8 +1,3 @@
-/*
-    db user: mern_user
-    password: QLTIfEfilDErr2qc
-*/
-
 const mongoose = require('mongoose');
 
 const dbConnection = async() => {
